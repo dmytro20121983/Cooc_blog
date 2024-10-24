@@ -3,11 +3,12 @@ from datetime import timezone,datetime
 from django.contrib.auth.models import User
 from django.db import models
 from mptt.models import TreeForeignKey, MPTTModel
+from PIL import Image
 
 
 class Category(MPTTModel):
     name = models.CharField(max_length=200, verbose_name='Название')
-    slag = models.SlugField(max_length=100)
+    slug = models.SlugField(max_length=100)
     parent = TreeForeignKey(
         'self',
         related_name = "children",
@@ -32,7 +33,7 @@ class Category(MPTTModel):
 
 class Tag(models.Model):
     name = models.CharField(max_length=200)
-    slag = models.SlugField(max_length=100)
+    slug = models.SlugField(max_length=100)
     
     def __str__(self):
         return self.name
@@ -50,7 +51,6 @@ class Post(models.Model):
     )
     tags = models.ManyToManyField (Tag, related_name="post")
     created_at = models.DateTimeField(auto_now_add=True)
-    
     
     def NAME(self):
         return u"%s..."% (self.title[:8])
@@ -86,4 +86,11 @@ class Comment(models.Model):
     email = models.CharField(max_length=100)
     website = models.CharField(max_length=150)
     message = models.TextField(max_length=500)
-    post = models.ForeignKey(Post, related_name='comment', on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, related_name='comment', 
+                             on_delete=models.CASCADE)
+    
+
+
+
+
+    

@@ -1,3 +1,7 @@
 {
-    "python.formatting.provider": "black"
+    "python.formatting.provider": "black",
+    "json.schemas": [],
+    "debug.javascript.terminalOptions": {},
+    "debug.javascript.resourceRequestOptions": {},
+    "debug.javascript.debugByLinkOptions": "on"
 }
